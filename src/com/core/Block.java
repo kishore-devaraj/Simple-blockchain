@@ -3,6 +3,7 @@ package com.core;
 import java.util.Arrays;
 
 public class Block {
+	
 	/*
 	 * Block should contain
 	 * 1. Previous Hash
@@ -11,24 +12,35 @@ public class Block {
 	 * 
 	 */
 	
-	int previousHash;
-	int currentHash;
+	long previousHash;
+	long currentHash;
+	String[] transactions;
 	
-	public int getPreviousHash() {
+	/*  Getter for class variables */
+	
+	public long getPreviousHash() {
 		return previousHash;
 	}
 	
-	public int getCurrentHash(){
+	public long getCurrentHash(){
 		return currentHash;
 	}
+	public Block getBlock(){
+		return this;
+	}
 	
-	// For simplicity we can use a list of string has transactions
-	String[] transactions;
 	
-	public Block(int previousHash, String [] transactions){
+	/* 
+	 * For simplicity we can consider we are getting list of string as transactions
+	 * We are finding the hash for that string and inrespective to previous hash
+	 */
+	public Block(long previousHash, String [] transactions){
 		this.previousHash = previousHash;
 		this.transactions = transactions;
+		
 		Object[] content = {Arrays.hashCode(transactions),previousHash};
-		this.currentHash = Arrays.hashCode(content);	
+		this.currentHash = Arrays.hashCode(content);
+		
+		System.out.println("Block has been successfully created");
 	}
 }
